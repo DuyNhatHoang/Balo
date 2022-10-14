@@ -33,10 +33,19 @@ namespace Balo.Service.Core
         {
             var resultModel = new ResultModel();
             var user = new User { FullName = model.FullName, UserName = userName };
-            try { 
-                await _dbContext.Users.InsertOneAsync(user);
-                resultModel.Succeed = true;
-                resultModel.Data = user.Id;
+            try {
+                var existedUser = await _dbContext.Users.FindAsync(x => x.UserName == userName);
+                if (existedUser == null)
+                {
+                    await _dbContext.Users.InsertOneAsync(user);
+                    resultModel.Succeed = true;
+                    resultModel.Data = user.Id;
+                } else
+                {
+                    throw new Exception("The user already existed");
+                }
+               
+                
 
             }
             catch (Exception ex)

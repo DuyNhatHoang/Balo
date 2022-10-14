@@ -23,7 +23,7 @@ namespace Balo.Controllers
         [HttpPost, Authorize]
         public async Task<IActionResult> Add([FromBody] CreateUserModel model)
         {
-            var username = User.Claims.GetUserName();
+            var userName = User.Claims.GetUserName();
             var result = await _service.AddAsync(userName, model);
 
             if (result.Succeed)

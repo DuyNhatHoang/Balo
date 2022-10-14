@@ -61,7 +61,5 @@ C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dl
 C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\System.IO.Packaging.dll
