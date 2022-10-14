@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balo", "Balo\Balo.csproj", "{82020F3F-2B41-4430-9F68-8FB9E241ACD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balo.Data", "Balo.Data\Balo.Data.csproj", "{10551FEA-876D-4A2E-8785-AE4738F54A10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balo.Service", "Balo.Service\Balo.Service.csproj", "{4F69B959-6268-498C-A50E-888CBF1B87CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82020F3F-2B41-4430-9F68-8FB9E241ACD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82020F3F-2B41-4430-9F68-8FB9E241ACD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82020F3F-2B41-4430-9F68-8FB9E241ACD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82020F3F-2B41-4430-9F68-8FB9E241ACD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10551FEA-876D-4A2E-8785-AE4738F54A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10551FEA-876D-4A2E-8785-AE4738F54A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10551FEA-876D-4A2E-8785-AE4738F54A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10551FEA-876D-4A2E-8785-AE4738F54A10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F69B959-6268-498C-A50E-888CBF1B87CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F69B959-6268-498C-A50E-888CBF1B87CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F69B959-6268-498C-A50E-888CBF1B87CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F69B959-6268-498C-A50E-888CBF1B87CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {264D4592-DEBA-4EFB-820A-DE0F10E97990}
+	EndGlobalSection
+EndGlobal

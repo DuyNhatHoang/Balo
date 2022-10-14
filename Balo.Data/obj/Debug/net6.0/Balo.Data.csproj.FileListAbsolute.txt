@@ -1,0 +1,12 @@
+C:\data\.NetCore\Balo\Balo.Data\bin\Debug\net6.0\Balo.Data.deps.json
+C:\data\.NetCore\Balo\Balo.Data\bin\Debug\net6.0\Balo.Data.dll
+C:\data\.NetCore\Balo\Balo.Data\bin\Debug\net6.0\ref\Balo.Data.dll
+C:\data\.NetCore\Balo\Balo.Data\bin\Debug\net6.0\Balo.Data.pdb
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.csproj.AssemblyReference.cache
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.AssemblyInfoInputs.cache
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.AssemblyInfo.cs
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.csproj.CoreCompileInputs.cache
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.dll
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\ref\Balo.Data.dll
+C:\data\.NetCore\Balo\Balo.Data\obj\Debug\net6.0\Balo.Data.pdb
