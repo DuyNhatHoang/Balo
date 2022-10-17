@@ -34,15 +34,15 @@ namespace Balo.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        [HttpGet]
+        public async Task<IActionResult> Get(Guid id, Guid userId)
         {
-            var result = await _service.Get(id);
+            var result = await _service.Get(id, userId);
 
             return Ok(result.Data);
         }
 
-        [HttpGet]
+        [HttpGet("Paging")]
         public async Task<IActionResult> GetPagingData(int? pageIndex = 0, int? pageSize = 10)
         {
             try {    
@@ -56,6 +56,23 @@ namespace Balo.Controllers
             }
 
            
+        }
+
+        [HttpGet("{id}/Users/{userId}")]
+        public async Task<IActionResult> GetBoardByUserId(int? pageIndex = 0, int? pageSize = 10)
+        {
+            try
+            {
+                var username = User.Claims.GetUserName();
+                var rs = await _service.GetPagingData(pageIndex, pageSize);
+                return Ok(rs);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
         }
 
         [HttpPut]

@@ -14,7 +14,7 @@ namespace Balo.Service.Core
 {
     public interface IBoardService
     {
-        Task<ResultModel> Get(Guid id);
+        Task<ResultModel> Get(Guid id, Guid userId);
         Task<ResultModel> AddAsync(BoardCreateModel model);
         Task Update(Guid id, Board model);
         Task Delete(Guid id);
@@ -57,12 +57,12 @@ namespace Balo.Service.Core
             await _dbContext.Boards.DeleteOneAsync(deleteFilter);
         }
 
-        public async Task<ResultModel> Get(Guid id)
+        public async Task<ResultModel> Get(Guid id, Guid userId)
         {
             var result = new ResultModel();
             try
             {
-                var board = await _dbContext.Boards.Find(x => x.Id == id).FirstOrDefaultAsync();
+                var board = await _dbContext.Boards.Find(x => x.Id == id || x.Members.Any(y => y.UserId == userId)).FirstOrDefaultAsync();
                 if (board == null)
                 {
                     throw new Exception("Cant find any board!");
