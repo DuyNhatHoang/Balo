@@ -1,4 +1,5 @@
 ﻿using Balo.Data.MongoCollections;
+using Balo.Data.ViewModels;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,15 @@ namespace Balo.Data.DataAccess
 
         public IMongoCollection<Board> Boards => _db.GetCollection<Board>("boards");
         public IMongoCollection<User> Users => _db.GetCollection<User>("users");
+        public IMongoCollection<BoardInviation> BoardInviations => _db.GetCollection<BoardInviation>("boardInviations");
+        public IMongoCollection<Group> Groups => _db.GetCollection<Group>("groups");
+        public IMongoCollection<PlannedTask> Tasks => _db.GetCollection<PlannedTask>("tasks");
      
 
         public IClientSessionHandle StartSession()
         {
             return _mongoClient.StartSession();
         }
-
         public void CreateCollectionsIfNotExists()
         {
             var collectionNames = _db.ListCollectionNames().ToList();

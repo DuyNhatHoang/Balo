@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Balo.Data.Enums
 {
-    public enum BoardRole
+    public enum Role
     {
         Owner,
         Member

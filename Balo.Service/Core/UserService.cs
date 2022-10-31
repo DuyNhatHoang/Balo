@@ -2,12 +2,9 @@
 using Balo.Data.MongoCollections;
 using Balo.Data.ViewModels;
 using Data.ViewModels;
+using Mapster;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Balo.Service.Core
 {   
@@ -32,9 +29,10 @@ namespace Balo.Service.Core
         public async Task<ResultModel> AddAsync(string userName, CreateUserModel model)
         {
             var resultModel = new ResultModel();
-            var user = new User { FullName = model.FullName, UserName = userName };
+            var user = model.Adapt<User>();
+            user.UserName = userName;
             try {
-                var existedUser = await _dbContext.Users.FindAsync(x => x.UserName == userName);
+                var existedUser = await _dbContext.Users.Find(x => x.UserName == userName).FirstOrDefaultAsync();
                 if (existedUser == null)
                 {
                     await _dbContext.Users.InsertOneAsync(user);
@@ -44,8 +42,7 @@ namespace Balo.Service.Core
                 {
                     throw new Exception("The user already existed");
                 }
-               
-                
+                   
 
             }
             catch (Exception ex)
@@ -111,7 +108,8 @@ namespace Balo.Service.Core
 
         public async Task Update(Guid id, UpdateUserModel model)
         {
-            await _dbContext.Users.ReplaceOneAsync(x => x.Id == id, new User {Id = id, FullName = model.FullName, UserName = model.UserName});
+            var user = model.Adapt<User>();
+            await _dbContext.Users.ReplaceOneAsync(x => x.Id == id, user);
         }
     }
 }

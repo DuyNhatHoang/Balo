@@ -14,12 +14,13 @@ namespace Balo.Service.Core
 {
     public interface IBoardService
     {
-        Task<ResultModel> Get(Guid id, Guid userId);
-        Task<ResultModel> AddAsync(BoardCreateModel model);
+        Task<ResultModel> AddAsync(string username, BoardCreateModel model);
+        Task<ResultModel> Get(Guid id);
+        Task<ResultModel> GetBoardMembers(Guid id);
         Task Update(Guid id, Board model);
         Task Delete(Guid id);
 
-        Task<PagingModel<Board>> GetPagingData(int? pageIndex = 0, int? pageSize = 10);
+        Task<PagingModel<Board>> GetPagingData(Guid userId, int? pageIndex = 0, int? pageSize = 10);
     }
     public class BoardService : IBoardService
     {
@@ -30,22 +31,35 @@ namespace Balo.Service.Core
             _dbContext = dbContext;
         }
 
-        public async Task<ResultModel> AddAsync(BoardCreateModel model)
+        public async Task<ResultModel> AddAsync(string username, BoardCreateModel model)
         {
             var resultModel = new ResultModel();
+            var session = _dbContext.StartSession(); session.StartTransaction();
             try
             {
-                //var board = new Board { Name = model.Name, Description = model.Description };
-                var board = model.Adapt<Board>();
-                await _dbContext.Boards.InsertOneAsync(board);
-                resultModel.Succeed = true;
-                resultModel.Data = board.Id;
+                var user = await _dbContext.Users.Find(x => x.UserName == username).FirstOrDefaultAsync();
+                if (user != null)
+                {
+                    var board = model.Adapt<Board>();
+                    var boardUser = user.Adapt<User>();
+                    boardUser.Role = Data.Enums.Role.Owner;
+                    board.Members.Add(boardUser);
+                    await _dbContext.Boards.InsertOneAsync(board);
+                    resultModel.Succeed = true;
+                    resultModel.Data = board.Id;
+                    await session.CommitTransactionAsync();
+                } else
+                {
+                    throw new Exception("The user not existed");
+                }
+                
 
             }
             catch (Exception ex)
             {
                 resultModel.Succeed = false;
                 resultModel.ErrorMessage = ex.Message;
+                await session.AbortTransactionAsync();
             }
 
             return resultModel;
@@ -57,12 +71,12 @@ namespace Balo.Service.Core
             await _dbContext.Boards.DeleteOneAsync(deleteFilter);
         }
 
-        public async Task<ResultModel> Get(Guid id, Guid userId)
+        public async Task<ResultModel> Get(Guid id)
         {
             var result = new ResultModel();
             try
             {
-                var board = await _dbContext.Boards.Find(x => x.Id == id || x.Members.Any(y => y.UserId == userId)).FirstOrDefaultAsync();
+                var board = await _dbContext.Boards.Find(x => x.Id == id).FirstOrDefaultAsync();
                 if (board == null)
                 {
                     throw new Exception("Cant find any board!");
@@ -82,9 +96,15 @@ namespace Balo.Service.Core
             await _dbContext.Boards.ReplaceOneAsync(x => x.Id == id, model);
         }
 
-        public async Task<PagingModel<Board>> GetPagingData(int? pageIndex = 0, int? pageSize = 10)
+        public async Task<PagingModel<Board>> GetPagingData(Guid userId, int? pageIndex = 0, int? pageSize = 10)
         {
             var filters = Builders<Board>.Filter.Empty;
+            if(!userId.Equals(Guid.Empty))
+            {
+                filters &= Builders<Board>.Filter.ElemMatch(x => x.Members, Builders<User>.Filter.Eq(y => y.Id, userId));
+
+            }
+
             var query = _dbContext.Boards.Find(filters);
             var count = query.CountDocuments();
             return new PagingModel<Board>
@@ -96,6 +116,26 @@ namespace Balo.Service.Core
                         .Limit(pageSize)
                         .ToListAsync(),
             };
+        }
+
+        public async Task<ResultModel> GetBoardMembers(Guid id)
+        {
+            var result = new ResultModel();
+            try
+            {
+                var board = await _dbContext.Boards.Find(x => x.Id == id).FirstOrDefaultAsync();
+                if (board == null)
+                {
+                    throw new Exception("Cant find any board!");
+                }
+                result.Data = board.Members;
+                result.Succeed = true;
+            }
+            catch (Exception e)
+            {
+                result.ErrorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
+            }
+            return result;
         }
     }
 }

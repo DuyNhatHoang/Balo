@@ -16,6 +16,9 @@ namespace Balo.Extensions
         {
            services.AddScoped<IBoardService, BoardService>();
            services.AddScoped<IUserService, UserService>();
+           services.AddScoped<IBoardInvitationService, BoardInvitationService>();
+           services.AddScoped<IGroupService, GroupService>();
+           services.AddScoped<ITaskService, TaskService>();
         }
 
         public static void ConfigCors(this IServiceCollection services)

@@ -63,3 +63,6 @@ C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
 C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\EntityFramework.dll
+C:\data\.NetCore\Balo\Balo\bin\Debug\net6.0\System.Web.Providers.dll

@@ -33,6 +33,8 @@ builder.Services.AddOpenApiDocument(document =>
 
 builder.Services.AddBusinessServices();
 
+//add session
+builder.Services.AddDistributedMemoryCache();
 
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
@@ -78,11 +80,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.UseOpenApi();
 app.UseSwaggerUi3();
-
-
 
 app.Run();
 

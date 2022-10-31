@@ -24,7 +24,8 @@ namespace Balo.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBoardAsync([FromBody] BoardCreateModel model)
         {
-            var result = await _service.AddAsync(model);
+            var username = User.Claims.GetUserName();
+            var result = await _service.AddAsync(username, model);
 
             if(result.Succeed)
             {
@@ -35,44 +36,27 @@ namespace Balo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(Guid id, Guid userId)
+        public async Task<IActionResult> Get(Guid id, Guid userId, int? pageIndex = 0, int? pageSize = 10)
         {
-            var result = await _service.Get(id, userId);
-
-            return Ok(result.Data);
-        }
-
-        [HttpGet("Paging")]
-        public async Task<IActionResult> GetPagingData(int? pageIndex = 0, int? pageSize = 10)
-        {
-            try {    
-                var username = User.Claims.GetUserName();
-                var rs = await _service.GetPagingData(pageIndex, pageSize);
-                return Ok(rs);
-            }
-            catch (Exception e)
+            if (!id.Equals(Guid.Empty))
             {
-                return BadRequest(e.Message);
-            }
+                var result = await _service.Get(id);
+                return Ok(result.Data);
+            } else
+            {
+                try
+                {
+                    var username = User.Claims.GetUserName();
+                    var rs = await _service.GetPagingData(userId, pageIndex, pageSize);
+                    return Ok(rs);
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
 
+            }
            
-        }
-
-        [HttpGet("{id}/Users/{userId}")]
-        public async Task<IActionResult> GetBoardByUserId(int? pageIndex = 0, int? pageSize = 10)
-        {
-            try
-            {
-                var username = User.Claims.GetUserName();
-                var rs = await _service.GetPagingData(pageIndex, pageSize);
-                return Ok(rs);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-
         }
 
         [HttpPut]
@@ -102,6 +86,17 @@ namespace Balo.Controllers
             {
                 return BadRequest(e.Message);
             }
+
+        }
+
+
+        [HttpGet("{id}/Members")]
+        public async Task<IActionResult> Members(Guid id)
+        {
+            var result = await _service.GetBoardMembers(id);
+            if (result.Succeed) 
+            return Ok(result.Data);
+            return BadRequest(result.ErrorMessage);
 
         }
 

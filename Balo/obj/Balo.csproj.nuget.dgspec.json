@@ -107,6 +107,14 @@
             "Mapster": {
               "target": "Package",
               "version": "[7.3.0, )"
+            },
+            "Microsoft.AspNet.Providers.Core": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [
