@@ -1,0 +1,15 @@
+C:\data\.NetCore\Balo\Balo.Service\bin\Release\net6.0\Balo.Service.deps.json
+C:\data\.NetCore\Balo\Balo.Service\bin\Release\net6.0\Balo.Service.dll
+C:\data\.NetCore\Balo\Balo.Service\bin\Release\net6.0\ref\Balo.Service.dll
+C:\data\.NetCore\Balo\Balo.Service\bin\Release\net6.0\Balo.Service.pdb
+C:\data\.NetCore\Balo\Balo.Service\bin\Release\net6.0\Balo.Data.dll
+C:\data\.NetCore\Balo\Balo.Service\bin\Release\net6.0\Balo.Data.pdb
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.csproj.AssemblyReference.cache
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.AssemblyInfoInputs.cache
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.AssemblyInfo.cs
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.csproj.CoreCompileInputs.cache
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.csproj.CopyComplete
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.dll
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\ref\Balo.Service.dll
+C:\data\.NetCore\Balo\Balo.Service\obj\Release\net6.0\Balo.Service.pdb

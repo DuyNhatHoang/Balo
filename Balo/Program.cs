@@ -16,6 +16,10 @@ builder.Services.ConfigMongoDb(builder.Configuration["AppDatabaseSettings:Connec
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors();
+
+//builder.Services.ConfigCors();
+
 builder.Services.AddOpenApiDocument(document =>
 {
     document.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
@@ -75,6 +79,12 @@ if (appDbContext != null)
 {
     appDbContext.CreateCollectionsIfNotExists();
 }
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

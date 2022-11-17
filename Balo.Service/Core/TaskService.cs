@@ -39,6 +39,14 @@ namespace Balo.Service.Core
                     var task = model.Adapt<PlannedTask>();
                     task.Members.Clear();
                     task.Groups.Clear();
+                    if(!model.ColumnId.Equals(Guid.Empty))
+                    {
+                        var column = await _dbContext.Columns.Find(x => x.Id == model.ColumnId).FirstOrDefaultAsync();
+                        task.Column = column;
+                    } else
+                    {
+                        throw new Exception("Column id cannot be empty");
+                    }
                     if (model.Groups.Count > 0)
                     {
                         for (var i = 0; i < model.Groups.Count; i++)
@@ -53,6 +61,7 @@ namespace Balo.Service.Core
                         var fuser = await _dbContext.Users.Find(x => x.UserName == userName).FirstOrDefaultAsync();
                         task.Members.Add(fuser);
                     }
+
                     await _dbContext.Tasks.InsertOneAsync(task);
                     resultModel.Succeed = true;
                     resultModel.Data = task.Id;
@@ -83,6 +92,11 @@ namespace Balo.Service.Core
             if (!model.MemberId.Equals(Guid.Empty))
             {
                 filters &= Builders<PlannedTask>.Filter.ElemMatch(x => x.Members, Builders<User>.Filter.Eq(y => y.Id, model.MemberId));
+            }
+
+            if (!model.ColumnId.Equals(Guid.Empty))
+            {
+                filters &= Builders<PlannedTask>.Filter.Eq(x => x.Column.Id, model.ColumnId);
             }
 
             if (model.Priority != null)

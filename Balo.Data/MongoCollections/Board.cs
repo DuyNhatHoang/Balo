@@ -11,9 +11,11 @@ namespace Balo.Data.MongoCollections
     public class Board : BaseMongoCollection
     {        
         public string Name { get; set; }
+        public string Background { get; set; }
+        public BackgroundType BackgroundType { get; set; }
         public ICollection<User> Members { get; set; } = new List<User>(); 
-
-         // public ICollection<Group> Groups { get; set; } = new List<Group>();
+          
+         // public qICollection<Group> Groups { get; set; } = new List<Group>();
         public BoardStatus Status{ get; set; }
     }
 }

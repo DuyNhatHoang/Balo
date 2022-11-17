@@ -1,10 +1,12 @@
 ﻿using Balo.Data.MongoCollections;
 using Balo.Data.ViewModels;
 using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Volo.Abp.BlobStoring;
 
 namespace Balo.Data.DataAccess
 {
@@ -24,8 +26,8 @@ namespace Balo.Data.DataAccess
         public IMongoCollection<BoardInviation> BoardInviations => _db.GetCollection<BoardInviation>("boardInviations");
         public IMongoCollection<Group> Groups => _db.GetCollection<Group>("groups");
         public IMongoCollection<PlannedTask> Tasks => _db.GetCollection<PlannedTask>("tasks");
+        public IMongoCollection<Column> Columns => _db.GetCollection<Column>("columns");
      
-
         public IClientSessionHandle StartSession()
         {
             return _mongoClient.StartSession();
@@ -41,6 +43,22 @@ namespace Balo.Data.DataAccess
             if (!collectionNames.Any(name => name == "users"))
             {
                 _db.CreateCollection("users");
+            }
+            if (!collectionNames.Any(name => name == "boardInviations"))
+            {
+                _db.CreateCollection("boardInviations");
+            }
+            if (!collectionNames.Any(name => name == "tasks"))
+            {
+                _db.CreateCollection("tasks");
+            }
+            if (!collectionNames.Any(name => name == "columns"))
+            {
+                _db.CreateCollection("columns");
+            }
+            if (!collectionNames.Any(name => name == "groups"))
+            {
+                _db.CreateCollection("groups");
             }
 
 

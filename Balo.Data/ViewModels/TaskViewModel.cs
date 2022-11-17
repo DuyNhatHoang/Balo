@@ -1,9 +1,4 @@
-﻿using Balo.Data.MongoCollections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Balo.Data.ViewModels
 {
@@ -15,12 +10,14 @@ namespace Balo.Data.ViewModels
         public Priority Priority { get; set; } = Priority.Medium;
         public ICollection<Guid> Members { get; set; } = new List<Guid>();
         public ICollection<Guid> Groups { get; set; } = new List<Guid>();
+        public Guid ColumnId { get; set; }
     }
 
     public class GetTaskModel
     {
-        public Guid GroupId  { get; set; }
-        public Guid MemberId  { get; set; }
-        public int? Priority  { get; set; }
+        public Guid GroupId { get; set; }
+        public Guid MemberId { get; set; }
+        public int? Priority { get; set; }
+        public Guid ColumnId { get; set; }
     }
 }

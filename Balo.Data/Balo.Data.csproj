@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp" Version="7.4.0" />
+    <PackageReference Include="GH.MongoDb.GenericRepository.BucketExtension" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+    <PackageReference Include="Volo.Abp.BlobStoring.Minio" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.MultiTenancy" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>

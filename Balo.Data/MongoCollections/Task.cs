@@ -18,6 +18,7 @@ namespace Balo.Data.ViewModels
         public Priority Priority { get; set; } = Priority.Medium;
         public ICollection<User> Members { get; set; } = new List<User>();
         public ICollection<Group> Groups { get; set; } = new List<Group>();
+        public Column Column { get; set; }
     }
 }
     
